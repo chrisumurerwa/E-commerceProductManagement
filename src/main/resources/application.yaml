@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: ProductManagement
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: chris2020
+    username: postgres
+    url:  jdbc:postgresql://localhost:5432/ProductManagement
+
+
+  jpa:
+    properties:
+      hibernate:
+        format_sql:  true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+

@@ -1,6 +1,6 @@
 package org.example.productmanagement.Dto;
 
-public class ProductDto {
+    public class ProductDto {
     private Long id;
     private String name;
     private double price;
