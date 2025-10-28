@@ -20,7 +20,6 @@ public class CategoryController {
     //  Create a new category
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        if (categoryRepository)
         Category saved = categoryRepository.save(category);
         return ResponseEntity.ok(saved);
     }

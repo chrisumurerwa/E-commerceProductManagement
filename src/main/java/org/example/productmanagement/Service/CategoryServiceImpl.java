@@ -1,6 +1,7 @@
 package org.example.productmanagement.Service;
 
 import org.example.productmanagement.Dto.CategoryDto;
+import org.example.productmanagement.GlobalExceptionHandling.resourcesExistsException;
 import org.example.productmanagement.Model.Category;
 import org.example.productmanagement.Repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,11 @@ public class CategoryServiceImpl extends CategoryService {
 
     @Override
     public CategoryDto createCategory(CategoryDto categoryDto) {
+
+        if (categoryRepository.existsByName(categoryDto.getName())) {
+            throw new resourcesExistsException("Category with name " + categoryDto.getName() + " already exists");
+
+        }
         Category category = mapToEntity(categoryDto);
         Category savedCategory = categoryRepository.save(category);
         return mapToDto(savedCategory);
