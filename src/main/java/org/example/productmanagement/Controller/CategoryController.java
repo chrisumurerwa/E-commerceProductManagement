@@ -17,14 +17,15 @@ public class CategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    // 🟢 Create a new category
+    //  Create a new category
     @PostMapping
     public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        if (categoryRepository)
         Category saved = categoryRepository.save(category);
         return ResponseEntity.ok(saved);
     }
 
-    // 🟢 Get all categories
+    //  Get all categories
     @GetMapping
     public ResponseEntity<List<Category>> getAllCategories() {
         return ResponseEntity.ok(categoryRepository.findAll());

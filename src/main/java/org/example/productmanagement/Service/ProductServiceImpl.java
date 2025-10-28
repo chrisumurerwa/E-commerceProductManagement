@@ -1,6 +1,7 @@
 package org.example.productmanagement.Service;
 
 import org.example.productmanagement.Dto.ProductDto;
+import org.example.productmanagement.GlobalExceptionHandling.resourcesExistsException;
 import org.example.productmanagement.Model.Category;
 import org.example.productmanagement.Model.Product;
 import org.example.productmanagement.Repository.CategoryRepository;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     // Helper: convert entity -> dto
     private ProductDto mapToDto(Product product) {
         ProductDto dto = new ProductDto();
+
         dto.setId(product.getId());
         dto.setName(product.getName());
         dto.setDescription(product.getDescription());
@@ -51,8 +53,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDto createProduct(ProductDto dto) {
+        if (productRepository.existsByName(dto.getName())) {
+            throw new resourcesExistsException("Product with name " + dto.getName() + " already exists");
+
+        }
         Product product = mapToEntity(dto);
-        Product saved = productRepository.save(product); // 🔥 this inserts into the product table
+        Product saved = productRepository.save(product); //  this inserts into the product table
         return mapToDto(saved);
     }
 

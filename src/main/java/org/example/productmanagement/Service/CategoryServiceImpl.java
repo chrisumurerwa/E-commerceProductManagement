@@ -17,7 +17,7 @@ public class CategoryServiceImpl extends CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    // 🔹 Helper method to map Entity -> DTO
+    // Helper method to map Entity -> DTO
     private CategoryDto mapToDto(Category category) {
         CategoryDto dto = new CategoryDto();
         dto.setId(category.getId());
@@ -25,7 +25,7 @@ public class CategoryServiceImpl extends CategoryService {
         return dto;
     }
 
-    // 🔹 Helper method to map DTO -> Entity
+    //  Helper method to map DTO -> Entity
     private Category mapToEntity(CategoryDto dto) {
         Category category = new Category();
         category.setName(dto.getName());
